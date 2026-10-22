@@ -1,0 +1,24 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+config/local.php
+
+# Runtime uploads and logs
+/uploads/*
+!/uploads/.gitkeep
+/user_uploads/*
+!/user_uploads/.gitkeep
+/private_uploads/*
+!/private_uploads/.gitkeep
+*.log
+*.tmp
+*.bak
+
+# Editor, OS, cache and dependency folders
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+__pycache__/
+node_modules/

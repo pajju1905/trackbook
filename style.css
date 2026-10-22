@@ -1,0 +1,245 @@
+:root{
+  --bg:#0b1424;
+  --panel:#101b33;
+  --text:#e6ecff;
+  --muted:#9db3ff;
+  --accent-grad: linear-gradient(135deg,#ff3358,#8a2be2);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family: system-ui,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
+  background: var(--bg); color: var(--text);   
+  padding-bottom:80px; /* avoid overlap with fixed footer */
+}
+.container{width:min(1100px,92%); margin-inline:auto;}
+.site-nav{
+  background: var(--accent-grad);
+  padding: 10px 0;
+  position: sticky; top:0; z-index: 10;
+}
+.nav-flex{display:flex; align-items:center; gap:16px}
+.brand-with-logo{display:flex; align-items:center; gap:10px}
+.logo{width:32px; height:32px; border-radius:6px; object-fit:cover; border:2px solid rgba(255,255,255,.5)}
+.site-nav .brand{color:white; font-weight:800; text-decoration:none; letter-spacing:.5px; font-size:1.2rem}
+.nav-links{list-style:none; display:flex; gap:14px; margin:0; padding:0; margin-left:auto;}
+.nav-links a{color:white; text-decoration:none; font-weight:600}
+.main-area{padding: 22px 0 60px}
+.hero{
+  min-height: 80vh;
+  background-image:
+    radial-gradient(ellipse at top left, rgba(255,255,255,.12), transparent 40%),
+    url('a.jpg');
+  background-size: cover;
+  background-position: center;
+  display:grid; place-items:center; text-align:center;
+  border-radius: 18px; overflow:hidden;
+  box-shadow: 0 8px 26px rgba(0,0,0,.35);
+}
+.hero h1{font-size: clamp(2.4rem, 6vw, 5rem); margin: 0 0 10px;color: blueviolet;}
+.hero p{color: rgba(255,255,255,1); font-size: 1.1rem}
+.card{
+  background: var(--panel); border:1px solid rgba(255,255,255,.06);
+  padding: 18px; border-radius: 14px; margin: 10px 0;
+}
+.grid{display:grid; gap:16px}
+.grid.two{grid-template-columns: repeat(auto-fit,minmax(280px,1fr))}
+input, select, textarea{
+  width:100%; background:#0e1a30; color:var(--text); border:1px solid #203354;
+  padding:10px 12px; border-radius: 10px; outline: none;
+}
+label{font-weight:600; font-size:.95rem}
+.btn{
+  display:inline-block; padding:10px 16px; border-radius: 999px;
+  background: var(--accent-grad); color:white; text-decoration:none; border:0; cursor:pointer;
+  font-weight:700; letter-spacing:.3px;
+}
+.table{width:100%; border-collapse: collapse}
+.table th,.table td{border-bottom:1px solid rgba(255,255,255,.08); padding:10px; text-align:left}
+.footer{
+  margin-top: 40px; padding: 16px 0; background: var(--accent-grad); color:white; text-align:center;
+  position:fixed; bottom:0; left:0; right:0; z-index:5;
+}
+.helper{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+.badge{padding:4px 10px; border-radius: 999px; background:#203354; color:#cfe2ff; font-size:.8rem; display:inline-block}
+.center{text-align:center}
+.avatar{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#132445;
+  border:2px solid rgba(255,255,255,.15);
+  font-size:40px;
+  color:#cfe2ff;
+}
+.avatar::before{
+  content:"\1F464";
+}
+
+.small{font-size:.9rem; color:#cbd5ff}
+.actions{display:flex; gap:8px; flex-wrap:wrap}
+.search-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.warning{color:#ffd166}
+.success{color:#06d6a0}
+.error{color:#ff6b6b}
+
+
+/* --- Animated hero background --- */
+.hero{
+  animation: panBG 20s linear infinite;
+  background-size: 120% 120%, cover;
+}
+@keyframes panBG{
+  0%{ background-position: 0% 0%, center; }
+  50%{ background-position: 100% 50%, center; }
+  100%{ background-position: 0% 0%, center; }
+}
+
+/* --- Scrolling cards "animated templates" --- */
+.scroller-wrap{overflow:hidden; border-radius:14px; border:1px solid rgba(255,255,255,.08); margin-top:18px}
+.scroller{
+  display:flex; gap:16px; padding:16px; width:max-content;
+  animation: slideLeft 25s linear infinite;
+}
+@keyframes slideLeft{
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(-50%); }
+}
+.template-card{
+  min-width: 260px; background: var(--panel); border:1px solid rgba(255,255,255,.06);
+  border-radius:14px; padding:14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+.template-thumb{
+  height:120px; border-radius:10px; background: var(--accent-grad);
+  margin-bottom:10px;
+}
+.template-title{font-weight:700}
+.template-meta{font-size:.85rem; color:#cbd5ff}
+
+
+/* Back button */
+.back-btn{margin-left:12px;background:rgba(255,255,255,0.12);padding:8px 12px;border-radius:8px;font-weight:700;border:1px solid rgba(255,255,255,0.06);cursor:pointer;color:white;}
+.flash-hidden{display:none;}
+
+
+/* ===== Enhanced hover & focus styles (subtle, not messy) ===== */
+
+/* Smooth transitions on key UI components */
+.card,
+.btn,
+.nav-links a,
+input,
+select,
+textarea,
+.template-card,
+.back-btn,
+.hero{
+  transition: all .22s ease-out, transform .22s ease-out, box-shadow .22s ease-out;
+}
+
+/* Cards lift slightly on hover */
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0,0,0,.45);
+  border-color: rgba(255,255,255,.18);
+}
+
+/* Navigation link underline + slight lift */
+.nav-links a{
+  position: relative;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:0;
+  height:2px;
+  background: rgba(255,255,255,.85);
+  border-radius:999px;
+  transition: width .22s ease-out;
+}
+.nav-links a:hover::after{
+  width:100%;
+}
+.nav-links a:hover{
+  transform: translateY(-1px);
+  text-shadow:0 0 10px rgba(0,0,0,.4);
+}
+
+/* Buttons: gentle pop on hover */
+.btn:hover{
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:0 12px 26px rgba(0,0,0,.45);
+  filter:brightness(1.05);
+}
+.btn:active{
+  transform: translateY(0) scale(.99);
+  box-shadow:0 6px 18px rgba(0,0,0,.35);
+}
+
+/* Inputs glow slightly on focus */
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#5b8dff;
+  box-shadow:0 0 0 1px rgba(91,141,255,.6);
+}
+
+/* Table row hover highlight */
+.table tr:hover td{
+  background:rgba(255,255,255,.02);
+}
+
+/* Template cards (if used) */
+.template-card:hover{
+  transform: translateY(-4px);
+  box-shadow:0 12px 28px rgba(0,0,0,.5);
+  border-color:rgba(255,255,255,.16);
+}
+
+/* Back button hover */
+.back-btn:hover{
+  background:rgba(255,255,255,0.16);
+  transform:translateY(-1px);
+}
+
+/* Hero: stronger shadow on hover */
+.hero:hover{
+  box-shadow:0 16px 40px rgba(0,0,0,.6);
+}
+
+
+/* === Center forms nicely on the page === */
+.card{
+  max-width: 760px;
+  margin: 16px auto;
+}
+
+.card h2,
+.card h3{
+  text-align:center;
+}
+
+/* Make form content sit in the middle and centred */
+.card form{
+  max-width: 840px;
+  margin: 16px auto 0 auto;
+}
+
+/* For grid forms, keep columns but center the items */
+
+
+/* Center helper/button row */
+.card .helper{
+  justify-content: left;
+}
+
+/* Center back button under forms */
+.card a.btn{
+  display:inline-block;
+  margin-top:10px;
+}

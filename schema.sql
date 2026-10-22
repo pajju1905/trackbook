@@ -1,0 +1,47 @@
+CREATE DATABASE IF NOT EXISTS trackbook CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE trackbook;
+
+CREATE TABLE IF NOT EXISTS students (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  student_id VARCHAR(50) UNIQUE NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  course_year ENUM('1','2','3') NOT NULL,
+  dob DATE NOT NULL,
+  mobile VARCHAR(20),
+  email VARCHAR(120),
+  gender VARCHAR(20),
+  address TEXT,
+  attendance VARCHAR(10) DEFAULT NULL,
+  grade VARCHAR(10) DEFAULT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS teachers (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  teacher_id VARCHAR(50) UNIQUE NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS admins (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+CREATE TABLE IF NOT EXISTS feedback (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  student_id VARCHAR(50) NOT NULL,
+  message TEXT NOT NULL,
+  status ENUM('unread','read') DEFAULT 'unread',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS pending_updates (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  student_id VARCHAR(50) NOT NULL,
+  teacher_id VARCHAR(50) NOT NULL,
+  attendance VARCHAR(10) DEFAULT NULL,
+  grade VARCHAR(10) DEFAULT NULL,
+  status ENUM('pending','approved','rejected') DEFAULT 'pending',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
